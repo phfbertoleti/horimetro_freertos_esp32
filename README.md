@@ -26,19 +26,19 @@ Visando maior gama de utilização, tanto o horímetro parcial quanto o total co
 
 O funcionamento do projeto é conforme descrito a seguir:
 
-1- O dispositivo inicia exibindo no display o horímetro total (lido da memória flash), horímetro parcial e tensão de bateria
-2- Quando o GPIO 36 vai para nível alto (rising), a contagem começa, incrementando tanto o horímetro total quanto o parcial
-3- Quando o GPIO 36 vai para nível baixo (falling), a contagem de tempo para. Nessa hora, é gravado em flash o horímetro total e é enviado, via LoRaWAN, os horímetros parcial e total para a nuvem.
+1) O dispositivo inicia exibindo no display o horímetro total (lido da memória flash), horímetro parcial e tensão de bateria
+2) Quando o GPIO 36 vai para nível alto (rising), a contagem começa, incrementando tanto o horímetro total quanto o parcial
+3) Quando o GPIO 36 vai para nível baixo (falling), a contagem de tempo para. Nessa hora, é gravado em flash o horímetro total e é enviado, via LoRaWAN, os horímetros parcial e total para a nuvem.
 
 ## Funcionamento - reset do horímetro total
 
 Para resetar / zerar o horímetro total, o procedimento é o seguinte:
 
-1- Com o projeto desligado, faça o GPIO 36 ir a nível alto.
-2- Ligue o projeto e aguarde 6 segundos.
-3- O horímetro total foi resetado (e é exibido como 0:00:00 no display OLED).
+1) Com o projeto desligado, faça o GPIO 36 ir a nível alto.
+2) Ligue o projeto e aguarde 6 segundos.
+3) O horímetro total foi resetado (e é exibido como 0:00:00 no display OLED).
 
-**IMPORTANTE:**
+## IMPORTANTE
 1) Este projeto considera a tensão da bateria lida no GPIO37 (ADC1_1), onde a tensão é lida num divisor de tensão 
   (resistor de 470k / 0,25W e resistor de 100k / 0,25W). 
  
