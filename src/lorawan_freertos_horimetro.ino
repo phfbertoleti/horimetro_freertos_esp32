@@ -599,6 +599,7 @@ void grava_horimetro_total(unsigned long ht)
             xSemaphoreGive(xSerial_semaphore);     
         }
         
+        nvs_close(handler_particao_nvs);
         return;
     }
 
@@ -607,8 +608,9 @@ void grava_horimetro_total(unsigned long ht)
         Serial.println("Horimetro gravado com sucesso"); 
         xSemaphoreGive(xSerial_semaphore);     
     }
-
+    
     nvs_commit(handler_particao_nvs);    
+    nvs_close(handler_particao_nvs);
 }
 
 /* Função: le da flash o horímetro total
@@ -671,7 +673,8 @@ unsigned long le_horimetro_total(void)
                 Serial.println(F("Falha criar key")); 
                 xSemaphoreGive(xSerial_semaphore);     
             }
-            
+
+            nvs_close(handler_particao_nvs);
             return 0; 
         }
         else
@@ -681,8 +684,9 @@ unsigned long le_horimetro_total(void)
                 Serial.println(F("Key criada e inicializada com sucesso")); 
                 xSemaphoreGive(xSerial_semaphore);     
             }
-            
+
             nvs_commit(handler_particao_nvs);
+            nvs_close(handler_particao_nvs);
         }
     }
     else
@@ -697,7 +701,8 @@ unsigned long le_horimetro_total(void)
                 Serial.println(F("Erro ao ler Key")); 
                 xSemaphoreGive(xSerial_semaphore);     
             } 
-            
+
+            nvs_close(handler_particao_nvs);
             return 0;
         }
         else
@@ -708,7 +713,8 @@ unsigned long le_horimetro_total(void)
                 xSemaphoreGive(xSerial_semaphore);     
             }
 
-             return ht_lido;
+            nvs_close(handler_particao_nvs);
+            return ht_lido;
         }
     }
 }
